@@ -8,7 +8,6 @@ WORKDIR /app
 COPY ./requirements.txt /app/requirements.txt
 
 # Install any needed packages specified in requirements.txt
-# Use --no-cache-dir to reduce image size
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Explicitly copy the 'app' directory
@@ -23,16 +22,8 @@ COPY ./run.py /app/run.py
 COPY ./README.md /app/README.md
 COPY ./uploads /app/uploads
 
-# Install wget and postgresql-client
-RUN apt-get update && apt-get install -y wget postgresql-client --no-install-recommends && rm -rf /var/lib/apt/lists/*
-
-# Download local_dump.sqlc directly from GitHub
-RUN wget https://raw.githubusercontent.com/Dipin-Raj/StreetOwear_Ecom_website/main/local_dump.sqlc
-
 # Expose port 8000 to the outside world
 EXPOSE 8000
 
 # Command to run the application
-# Use 0.0.0.0 to make it accessible from outside the container
-# The port should match the one your deployment service expects, 8000 is common.
-CMD ["sh", "-c", "pg_restore -U fastapiecom_db_user -d fastapiecom_db -h dpg-d49dh83e5dus73cm1iv0-a /app/local_dump.sqlc && exit 0"]
+CMD ["sh", "-c", "alembic upgrade head && export PYTHONPATH=$PYTHONPATH:/app && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"]
