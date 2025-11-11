@@ -1,5 +1,5 @@
 # Start with an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,6 +8,7 @@ WORKDIR /app
 COPY ./requirements.txt /app/requirements.txt
 
 # Install any needed packages specified in requirements.txt
+# Use --no-cache-dir to reduce image size
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Explicitly copy the 'app' directory
@@ -25,4 +26,6 @@ COPY ./README.md /app/README.md
 EXPOSE 8000
 
 # Command to run the application
+# Use 0.0.0.0 to make it accessible from outside the container
+# The port should match the one your deployment service expects, 8000 is common.
 CMD ["sh", "-c", "export PYTHONPATH=$PYTHONPATH:/app && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"]
