@@ -10,11 +10,16 @@ COPY ./requirements.txt /app/requirements.txt
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application's code into the container at /app
-COPY . /app
+# Explicitly copy the 'app' directory
+COPY ./app /app/app
 
-# Debugging step: List contents of /app
-RUN ls -R /app
+# Copy other necessary files
+COPY ./alembic.ini /app/alembic.ini
+COPY ./alembic /app/alembic
+COPY ./main.py /app/main.py
+COPY ./migrate.py /app/migrate.py
+COPY ./run.py /app/run.py
+COPY ./README.md /app/README.md
 
 # Expose port 8000 to the outside world
 EXPOSE 8000
