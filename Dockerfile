@@ -21,6 +21,7 @@ COPY ./main.py /app/main.py
 COPY ./migrate.py /app/migrate.py
 COPY ./run.py /app/run.py
 COPY ./README.md /app/README.md
+COPY ./uploads /app/uploads
 
 # Expose port 8000 to the outside world
 EXPOSE 8000
