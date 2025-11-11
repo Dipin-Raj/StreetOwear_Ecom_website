@@ -42,7 +42,7 @@ export function ProductCard({
     <Card key={product.id} className="hover-lift gradient-card overflow-hidden card-container">
       <div className="aspect-video overflow-hidden">
         <img
-          src={`${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail}`}
+          src={`${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail.startsWith('/') ? product.thumbnail.substring(1) : product.thumbnail}`}
           alt={product.title}
           className="h-full w-full object-cover transition-transform hover:scale-105"
         />
