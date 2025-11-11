@@ -23,6 +23,9 @@ COPY ./run.py /app/run.py
 COPY ./README.md /app/README.md
 COPY ./uploads /app/uploads
 
+# Install wget
+RUN apt-get update && apt-get install -y wget --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
 # Download local_dump.sqlc directly from GitHub
 RUN wget https://raw.githubusercontent.com/Dipin-Raj/StreetOwear_Ecom_website/main/local_dump.sqlc
 
