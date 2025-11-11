@@ -12,7 +12,7 @@ config = context.config
 
 
 config.set_main_option(
-    "sqlalchemy.url",  f"postgresql://{settings.db_username}:{settings.db_password}@{settings.db_hostname}:{settings.db_port}/{settings.db_name}")
+    "sqlalchemy.url", settings.database_url)
 
 
 if config.config_file_name is not None:
