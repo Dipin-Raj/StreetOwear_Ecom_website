@@ -22,6 +22,7 @@ COPY ./migrate.py /app/migrate.py
 COPY ./run.py /app/run.py
 COPY ./README.md /app/README.md
 COPY ./uploads /app/uploads
+COPY ./local_dump.sqlc /app/local_dump.sqlc # Add this line to copy the dump file
 
 # Expose port 8000 to the outside world
 EXPOSE 8000
@@ -29,4 +30,4 @@ EXPOSE 8000
 # Command to run the application
 # Use 0.0.0.0 to make it accessible from outside the container
 # The port should match the one your deployment service expects, 8000 is common.
-CMD ["sh", "-c", "export PYTHONPATH=$PYTHONPATH:/app && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+CMD ["sh", "-c", "pg_restore -U fastapiecom_db_user -d fastapiecom_db -h dpg-d49dh83e5dus73cm1iv0-a /app/local_dump.sqlc && exit 0"]
