@@ -27,7 +27,7 @@ export default function ProductDetails() {
       if (productsData.length > 0) {
         const fetchedProduct = productsData[0];
         setProduct(fetchedProduct);
-        setSelectedImage(fetchedProduct.thumbnail);
+        setSelectedImage(`${import.meta.env.VITE_API_BASE_URL}/${fetchedProduct.thumbnail}`);
 
         const fetchedReviews = await fetchReviewsForProduct(fetchedProduct.id);
         setReviews(fetchedReviews);
