@@ -16,7 +16,7 @@ import AddCategory from './pages/admin/AddCategory';
 import EditCategory from './pages/admin/EditCategory';
 import EditProduct from './pages/admin/EditProduct';
 import OrderDetails from "./pages/admin/OrderDetails";
-import ViewReviews from "./pages/Admin/ViewReviews";
+import ViewReviews from "./pages/admin/ViewReviews";
 import UserDashboard from "./pages/user/UserDashboard";
 import UserDashboardHome from "./pages/user/Dashboard";
 import Categories from "./pages/user/Categories";
