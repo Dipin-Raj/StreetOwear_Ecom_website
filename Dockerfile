@@ -22,7 +22,9 @@ COPY ./migrate.py /app/migrate.py
 COPY ./run.py /app/run.py
 COPY ./README.md /app/README.md
 COPY ./uploads /app/uploads
-COPY ./local_dump.sqlc /app/local_dump.sqlc # Add this line to copy the dump file
+
+# Download local_dump.sqlc directly from GitHub
+RUN wget https://raw.githubusercontent.com/Dipin-Raj/StreetOwear_Ecom_website/main/local_dump.sqlc
 
 # Expose port 8000 to the outside world
 EXPOSE 8000
