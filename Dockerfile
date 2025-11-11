@@ -13,8 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application's code into the container at /app
 COPY . /app
 
+# Debugging step: List contents of /app
+RUN ls -R /app
+
 # Expose port 8000 to the outside world
 EXPOSE 8000
 
 # Command to run the application
-CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--app-dir", "/app"]
+CMD ["sh", "-c", "export PYTHONPATH=$PYTHONPATH:/app && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"]
