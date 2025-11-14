@@ -9,11 +9,11 @@ import { Badge } from '@/components/ui/badge';
 import useEmblaCarousel from 'embla-carousel-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import videoSrc from '../../data/SoW (2).mp4';
-import image1Src from '../../data/18363c7262069b43e75267fdc942ccab.jpg';
-import image2Src from '../../data/GettyImages-1423350509.webp';
-import image3Src from '../../data/Paris Mens SS22 day 3.jpg';
-import image4Src from '../../data/FBE_Bysouth_HGW_A4_1.jpg';
+import videoSrc from '@/data/SoW (2).mp4';
+import image1Src from '@/data/18363c7262069b43e75267fdc942ccab.jpg';
+import image2Src from '@/data/GettyImages-1423350509.webp';
+import image3Src from '@/data/Paris Mens SS22 day 3.jpg';
+import image4Src from '@/data/FBE_Bysouth_HGW_A4_1.jpg';
 
 const AnimatedCategoryCard = ({ category }: { category: Category }) => {
   const { ref, inView } = useInView({
@@ -111,7 +111,7 @@ const AnimatedProductCard = ({ product, handleAddToCart, handleAddToWishlist, is
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
-  const [categories, setCategories].
+  const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [newDrops, setNewDrops] = useState<Product[]>([]);
   const [wishlist, setWishlist] = useState<Product[]>([]);
