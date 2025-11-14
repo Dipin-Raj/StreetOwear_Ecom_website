@@ -55,7 +55,7 @@ export function TopNavigationBar({ userName, isAdmin }: TopNavigationBarProps) {
       <div className="container flex h-16 items-center justify-between">
         {/* Left Section - Branding */}
         <Link to={isAdmin ? "/admin/dashboard" : "/user/dashboard"} className="text-2xl font-bold text-foreground flex items-center">
-          <img src="/Streeto_Wear!.png" alt="Streeto Wear" className="h-16" />
+          <img src={`${import.meta.env.VITE_API_BASE_URL}/Streeto_Wear!.png`} alt="Streeto Wear" className="h-16" />
         </Link>
 
         {/* Center Section - Main Navigation Links */}
