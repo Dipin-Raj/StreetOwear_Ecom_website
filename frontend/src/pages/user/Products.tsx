@@ -26,7 +26,7 @@ const AnimatedProductCard = ({ product, category, handleAddToCart, handleAddToWi
         <Card className="hover-lift gradient-card overflow-hidden">
           <div className="aspect-square overflow-hidden relative">
             <img
-              src={product.thumbnail}
+              src={`${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail.startsWith('/') ? product.thumbnail.substring(1) : product.thumbnail}`}
               alt={product.title}
               className="h-full w-full object-cover transition-transform hover:scale-105"
             />
