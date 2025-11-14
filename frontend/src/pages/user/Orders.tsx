@@ -200,7 +200,7 @@ export default function Orders() {
                   {order.order_items.map((item) => (
                     <div key={item.id} className="flex gap-4 items-center">
                       <img
-                        src={item.product.thumbnail}
+                        src={`${import.meta.env.VITE_API_BASE_URL}/${item.product.thumbnail.startsWith('/') ? item.product.thumbnail.substring(1) : item.product.thumbnail}`}
                         alt={item.product.title}
                         className="h-16 w-16 rounded object-cover"
                       />
