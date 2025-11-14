@@ -1,13 +1,26 @@
 # 🛍️ StreetO'Wear E-commerce Platform
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Dipin-Raj/StreetOwear_Ecom_website.git)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-CC2B2B?style=for-the-badge&logo=sqlalchemy)
+![Alembic](https://img.shields.io/badge/Alembic-4E85A6?style=for-the-badge&logo=alembic)
+![Uvicorn](https://img.shields.io/badge/Uvicorn-2F8D8D?style=for-the-badge&logo=uvicorn)
+![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript)
+![Shadcn UI](https://img.shields.io/badge/Shadcn_UI-000000?style=for-the-badge&logo=shadcn-ui&logoColor=white)
 
 <p align="center">
-  <img src="uploads/Streeto_Wear!.png" alt="StreetO'Wear Logo" width="150"/>
+  <img src="uploads/Streeto_Wear!.png" alt="StreetO'Wear Logo" width="200"/>
 </p>
 
-Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts. This project is a full-stack application built with a FastAPI backend and a React frontend. Explore the latest trends and shop seamlessly.
+Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts. This project is a full-stack application built with a FastAPI backend and a React frontend. It provides a seamless shopping experience for users and a powerful dashboard for administrators to manage products, categories, users, and orders. Explore the latest trends and shop with ease!
+
+<br>
 
 ## 🌐 Live Demo & API Docs
 
@@ -15,17 +28,21 @@ Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts
 *   **Swagger UI API Docs:** [https://streetowear-ecom-website.onrender.com/docs](https://streetowear-ecom-website.onrender.com/docs)
     *   **Note:** The backend is hosted on Render's free tier, so it may take a moment for the server to warm up and load. Please be patient!
 
+<br>
+
 ## ✨ Features
 
-*   User Authentication: Secure user registration and login system.
-*   Product Management: Admins can add, update, and delete products.
-*   Category Management: Admins can manage product categories.
-*   User Management: Admins can view and manage user accounts.
-*   Product Browsing: Users can browse products, search for specific items, and filter by category.
-*   Shopping Cart: Users can add products to their cart and manage cart items.
-*   Wishlist: Users can add products to their wishlist for future reference.
-*   Order Management: Users can place orders and view their order history.
-*   Product Reviews: Users can leave reviews and ratings for products.
+*   **User Authentication:** Secure user registration and login system with role-based access control (admin/user).
+*   **Product Management:** Admins can add, update, and delete products, including details like price, stock, and images.
+*   **Category Management:** Admins can manage product categories to organize the store's inventory.
+*   **User Management:** Admins can view and manage user accounts.
+*   **Product Browsing:** Users can browse products, search for specific items, and filter by category.
+*   **Shopping Cart:** Users can add products to their cart and manage cart items before checkout.
+*   **Wishlist:** Users can add products to their wishlist for future reference.
+*   **Order Management:** Users can place orders and view their order history. Admins can manage all orders.
+*   **Product Reviews:** Users can leave reviews and ratings for products, which are then displayed on the product page.
+
+<br>
 
 ## 🛠️ Tech Stack
 
@@ -46,6 +63,44 @@ Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts
 *   **Styling:** Tailwind CSS - A utility-first CSS framework for rapid UI development.
 *   **UI Components:** Shadcn UI - Beautifully designed components built with Radix UI and Tailwind CSS.
 *   **Language:** TypeScript - JavaScript with syntax for types.
+
+<br>
+
+## 🗃️ Database Schema
+
+The database schema is designed to support a comprehensive e-commerce platform. Here's an overview of the main tables and their relationships:
+
+*   **`users`**: Stores user information, including authentication details and roles (`admin` or `user`).
+    *   `id` (Primary Key)
+*   **`products`**: Contains all product details, such as title, description, price, stock, and brand.
+    *   `id` (Primary Key)
+    *   `category_id` (Foreign Key to `categories.id`)
+*   **`categories`**: Stores product categories.
+    *   `id` (Primary Key)
+*   **`carts`**: Represents a user's shopping cart.
+    *   `id` (Primary Key)
+    *   `user_id` (Foreign Key to `users.id`)
+*   **`cart_items`**: Represents the items within a user's shopping cart.
+    *   `id` (Primary Key)
+    *   `cart_id` (Foreign Key to `carts.id`)
+    *   `product_id` (Foreign Key to `products.id`)
+*   **`orders`**: Stores order information, including the user, total amount, and status.
+    *   `id` (Primary Key)
+    *   `user_id` (Foreign Key to `users.id`)
+*   **`order_items`**: Represents the items within an order.
+    *   `id` (Primary Key)
+    *   `order_id` (Foreign Key to `orders.id`)
+    *   `product_id` (Foreign Key to `products.id`)
+*   **`wishlists`** and **`wishlist_items`**: Manage users' wishlists.
+    *   `wishlists.id` (Primary Key)
+    *   `wishlists.user_id` (Foreign Key to `users.id`)
+    *   `wishlist_items` is a junction table connecting `wishlists` and `products`.
+*   **`reviews`**: Stores user reviews and ratings for products.
+    *   `id` (Primary Key)
+    *   `product_id` (Foreign Key to `products.id`)
+    *   `user_id` (Foreign Key to `users.id`)
+
+<br>
 
 ## 🚀 Getting Started
 
@@ -98,6 +153,8 @@ Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts
     ```
     The frontend will be available at `http://localhost:5173`.
 
+<br>
+
 ## 📂 Project Structure
 
 ```
@@ -121,6 +178,8 @@ Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts
 └── README.md             # This file
 ```
 
+<br>
+
 ## 🔗 API Endpoints
 
 A summary of the main API endpoints can be found below. For a complete and interactive API documentation, please visit the [Swagger UI](https://streetowear-ecom-website.onrender.com/docs).
@@ -133,7 +192,10 @@ A summary of the main API endpoints can be found below. For a complete and inter
 *   `/orders`: Order management
 *   `/reviews`: Product reviews and ratings
 *   `/wishlist`: Wishlist management
+<br>
 
-## 📄 License
+## Authors
+- 📍[@Dipin-Raj](https://github.com/Dipin-Raj)
+-  📧 Contact: dipinr505@gmail.com
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+⚡ “Turning raw ride data into actionable insights, one visualization at a time.”
