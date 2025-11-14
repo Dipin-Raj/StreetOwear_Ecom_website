@@ -15,7 +15,7 @@
 ![Shadcn UI](https://img.shields.io/badge/Shadcn_UI-000000?style=for-the-badge&logo=shadcn-ui&logoColor=white)
 
 <p align="center">
-  <img src="uploads/Streeto_Wear!.png" alt="StreetO'Wear Logo" width="200"/>
+  <img src="uploads/Streeto_Wear!.png" alt="StreetO'Wear Logo" width="400"/>
 </p>
 
 Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts. This project is a full-stack application built with a FastAPI backend and a React frontend. It provides a seamless shopping experience for users and a powerful dashboard for administrators to manage products, categories, users, and orders. Explore the latest trends and shop with ease!
