@@ -142,7 +142,7 @@ The database schema is designed to support a comprehensive e-commerce platform. 
 1.  **Run the Backend:**
     From the root directory, run:
     ```bash
-    python run.py
+    uvicorn main:app --reload
     ```
     The backend will be available at `http://127.0.0.1:8000`.
 
@@ -154,6 +154,34 @@ The database schema is designed to support a comprehensive e-commerce platform. 
     The frontend will be available at `http://localhost:5173`.
 
 <br>
+
+
+## ☁️ Deployment
+
+### Backend (Render)
+
+1.  **Create a new Web Service on Render.**
+2.  **Connect your GitHub repository.**
+3.  **Set the following configuration:**
+    *   **Environment:** `Python`
+    *   **Build Command:** `pip install -r requirements.txt`
+    *   **Start Command:** `gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app`
+4.  **Add your environment variables** (e.g., `DATABASE_URL`, `SECRET_KEY`, etc.).
+5.  **Deploy!**
+
+### Frontend (Vercel)
+
+1.  **Create a new Project on Vercel.**
+2.  **Connect your GitHub repository.**
+3.  **Set the following configuration:**
+    *   **Framework Preset:** `Vite`
+    *   **Root Directory:** `frontend`
+4.  **Add your environment variables:**
+    *   `VITE_API_BASE_URL`: The URL of your deployed Render backend.
+5.  **Deploy!**
+
+<br>
+
 
 ## 📂 Project Structure
 
