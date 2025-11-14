@@ -5,9 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/hooks/use-toast';
-import { signupUser } from '@/lib/api'; // Import the new API utility
-import { ShoppingBag } from 'lucide-react';
-
+import { signupUser } from '@/lib/api';
+=
 export default function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,10 +14,10 @@ export default function Signup() {
   const [fullName, setFullName] = useState('');
   const navigate = useNavigate();
 
-  const handleSignup = async (e: React.FormEvent) => { // Made async
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const result = await signupUser(fullName, username, email, password); // Use signupUser from API utility
+    const result = await signupUser(fullName, username, email, password);
     
     if (result.success) {
       toast({
@@ -41,7 +40,7 @@ export default function Signup() {
       <Card className="w-full max-w-md shadow-elegant">
         <CardHeader className="space-y-3 text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary">
-            <ShoppingBag className="h-6 w-6 text-primary-foreground" />
+            <img src={`${import.meta.env.VITE_API_BASE_URL}/Streeto_Wear!.png`} alt="Streeto Wear Logo" className="h-full w-full object-contain" />
           </div>
           <CardTitle className="text-3xl">Create Account</CardTitle>
           <CardDescription>Sign up to start shopping</CardDescription>
