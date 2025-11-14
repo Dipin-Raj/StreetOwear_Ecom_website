@@ -108,7 +108,8 @@ export default function Login() {
             <div className="rounded-lg bg-muted p-3 text-xs text-muted-foreground">
               <p className="font-medium mb-1">Demo Credentials:</p>
               <p>User: Arun</p>
-              <p>Password: 1234</p>
+              <p>Password: 1234</p
+              <div className="h-2"></div>
               <p className="font-medium mb-1">Note:</p>
               <p>This is a demo website created purely for learning and educational purposes. The data and credentials displayed here are not real and are meant only for demonstration.</p>
             </div>
