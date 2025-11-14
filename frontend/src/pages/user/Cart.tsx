@@ -133,7 +133,7 @@ export default function Cart() {
                 <CardContent className="p-4">
                   <div className="flex gap-4">
                     <img
-                      src={item.product.thumbnail}
+                      src={`${import.meta.env.VITE_API_BASE_URL}/${item.product.thumbnail.startsWith('/') ? item.product.thumbnail.substring(1) : item.product.thumbnail}`}
                       alt={item.product.title}
                       className="h-24 w-24 rounded object-cover"
                     />
