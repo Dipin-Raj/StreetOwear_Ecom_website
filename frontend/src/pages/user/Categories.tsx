@@ -24,7 +24,7 @@ const AnimatedCard = ({ category }: { category: Category }) => {
         <Card className="hover-lift gradient-card overflow-hidden cursor-pointer group relative">
           <div className="aspect-square overflow-hidden">
             <img
-              src={`${import.meta.env.VITE_API_BASE_URL}/${category.thumbnail}`}
+              src={`${import.meta.env.VITE_API_BASE_URL}/${category.thumbnail.startsWith('/') ? category.thumbnail.substring(1) : category.thumbnail}`}
               alt={category.name}
               className="h-full w-full object-cover transition-transform group-hover:scale-110"
             />
