@@ -139,15 +139,15 @@ export default function ProductDetails() {
                 {[product.thumbnail, ...product.images].map((image, index) => (
                   <img
                     key={index}
-                    src={image}
+                    src={`${import.meta.env.VITE_API_BASE_URL}/${image}`}
                     alt={`${product.title} thumbnail ${index + 1}`}
                     className={`w-20 h-20 rounded-lg cursor-pointer object-cover ${selectedImage === image ? 'border-2 border-primary' : ''}`}
-                    onClick={() => setSelectedImage(image)}
+                    onClick={() => setSelectedImage(`${import.meta.env.VITE_API_BASE_URL}/${image}`)}
                   />
                 ))}
               </div>
               <div className="flex-1">
-                <img src={selectedImage || product.thumbnail} alt={product.title} className="w-full rounded-lg" />
+                <img src={selectedImage || `${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail}`} alt={product.title} className="w-full rounded-lg" />
               </div>
             </div>
             <div>
