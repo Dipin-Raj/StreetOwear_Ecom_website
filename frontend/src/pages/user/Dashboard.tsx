@@ -27,7 +27,7 @@ const AnimatedCategoryCard = ({ category }: { category: Category }) => {
         <Card className="hover-lift hover-gradient-maroon overflow-hidden cursor-pointer relative bg-white">
           <div className="aspect-square overflow-hidden">
             <img
-              src={category.thumbnail}
+              src={`${import.meta.env.VITE_API_BASE_URL}/${category.thumbnail.startsWith('/') ? category.thumbnail.substring(1) : category.thumbnail}`}
               alt={category.name}
               className="h-full w-full object-cover transition-transform hover:scale-105"
             />
@@ -61,7 +61,7 @@ const AnimatedProductCard = ({ product, handleAddToCart, handleAddToWishlist, is
         <Card className="hover-lift hover-gradient-primary">
           <div className="aspect-square overflow-hidden relative">
             <img
-              src={product.thumbnail}
+              src={`${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail.startsWith('/') ? product.thumbnail.substring(1) : product.thumbnail}`}
               alt={product.title}
               className="w-full aspect-square object-cover rounded-lg mb-4"
             />
