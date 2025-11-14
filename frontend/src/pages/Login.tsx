@@ -45,12 +45,14 @@ export default function Login() {
     }
   };
 
+  const logoPath = 'Streeto_Wear!.png';
+
   return (
     <div className="min-h-screen gradient-subtle flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-elegant">
         <CardHeader className="space-y-3 text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary">
-            <img src={`${import.meta.env.VITE_API_BASE_URL}/Streeto_Wear!.png`} alt="Streeto Wear Logo" className="h-full w-full object-contain" />
+            <img src={`${import.meta.env.VITE_API_BASE_URL}/${logoPath.startsWith('/') ? logoPath.substring(1) : logoPath}`} alt="Streeto Wear Logo" className="h-full w-full object-contain" />
           </div>
           <CardTitle className="text-3xl">Welcome Back</CardTitle>
           <CardDescription>Sign in to your account to continue</CardDescription>
