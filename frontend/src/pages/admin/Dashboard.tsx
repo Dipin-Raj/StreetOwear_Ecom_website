@@ -149,7 +149,7 @@ export default function Dashboard() {
                 topProducts.map((product) => (
                   <div key={product.id} className="flex items-center gap-4">
                     <img
-                      src={product.thumbnail}
+                      src={`${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail.startsWith('/') ? product.thumbnail.substring(1) : product.thumbnail}`}
                       alt={product.title}
                       className="h-12 w-12 rounded object-cover"
                     />
