@@ -1,176 +1,133 @@
-# FastAPI E-commerce API
+# StreetO'Wear E-commerce Platform
 
-This is a comprehensive e-commerce API built with FastAPI, providing a wide range of functionalities for managing users, products, categories, carts, orders, and wishlists.
+![StreetO'Wear Logo](uploads/Streeto_Wear!.png)
 
-## Database Schema
+Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts. This project is a full-stack application built with a FastAPI backend and a React frontend.
 
-The database consists of the following tables with their relationships:
+## Live Demo & API Docs
 
-### `User`
+*   **Deployed Application:** [https://street-owear-ecom-website.vercel.app/](https://street-owear-ecom-website.vercel.app/)
+*   **Swagger UI API Docs:** [https://streetowear-ecom-website.onrender.com/docs](https://streetowear-ecom-website.onrender.com/docs)
+    *   **Note:** The backend is hosted on Render's free tier, so it may take a moment to load.
 
--   **Primary Key:** `id`
--   **Unique Fields:** `username`, `email`
--   **Relationships:**
-    -   One-to-Many with `Cart`
-    -   One-to-Many with `Order`
-    -   One-to-One with `Wishlist`
+## Features
 
-### `Cart`
+*   **User Authentication:** Secure user registration and login system.
+*   **Product Management:** Admins can add, update, and delete products.
+*   **Category Management:** Admins can manage product categories.
+*   **User Management:** Admins can view and manage user accounts.
+*   **Product Browsing:** Users can browse products, search for specific items, and filter by category.
+*   **Shopping Cart:** Users can add products to their cart and manage cart items.
+*   **Wishlist:** Users can add products to their wishlist for future reference.
+*   **Order Management:** Users can place orders and view their order history.
+*   **Product Reviews:** Users can leave reviews and ratings for products.
 
--   **Primary Key:** `id`
--   **Foreign Key:** `user_id` -> `User.id`
--   **Relationships:**
-    -   Many-to-One with `User`
-    -   One-to-Many with `CartItem`
+## Tech Stack
 
-### `CartItem`
+### Backend
 
--   **Primary Key:** `id`
--   **Foreign Keys:**
-    -   `cart_id` -> `Cart.id`
-    -   `product_id` -> `Product.id`
--   **Relationships:**
-    -   Many-to-One with `Cart`
-    -   Many-to-One with `Product`
+*   **Framework:** FastAPI
+*   **Language:** Python
+*   **Database:** PostgreSQL
+*   **ORM:** SQLAlchemy
+*   **Migrations:** Alembic
+*   **Server:** Uvicorn (for development), Gunicorn (for production)
 
-### `Category`
+### Frontend
 
--   **Primary Key:** `id`
--   **Unique Fields:** `name`
--   **Relationships:**
-    -   One-to-Many with `Product`
+*   **Framework:** React
+*   **Build Tool:** Vite
+*   **Styling:** Tailwind CSS
+*   **UI Components:** Shadcn UI
+*   **Language:** TypeScript
 
-### `Product`
+## Getting Started
 
--   **Primary Key:** `id`
--   **Foreign Key:** `category_id` -> `Category.id`
--   **Relationships:**
-    -   Many-to-One with `Category`
-    -   One-to-Many with `CartItem`
-    -   One-to-Many with `OrderItem`
-    -   One-to-Many with `ProductImage`
-    -   Many-to-Many with `Wishlist` (through `wishlist_items` table)
+### Prerequisites
 
-### `ProductImage`
+*   Python 3.8+
+*   Node.js 14.x+
+*   PostgreSQL
 
--   **Primary Key:** `id`
--   **Foreign Key:** `product_id` -> `Product.id`
--   **Relationships:**
-    -   Many-to-One with `Product`
+### Installation
 
-### `Order`
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
 
--   **Primary Key:** `id`
--   **Foreign Key:** `user_id` -> `User.id`
--   **Relationships:**
-    -   Many-to-One with `User`
-    -   One-to-Many with `OrderItem`
+2.  **Backend Setup:**
+    ```bash
+    # Create and activate a virtual environment
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-### `OrderItem`
+    # Install backend dependencies
+    pip install -r requirements.txt
+    ```
 
--   **Primary Key:** `id`
--   **Foreign Keys:**
-    -   `order_id` -> `Order.id`
-    -   `product_id` -> `Product.id`
--   **Relationships:**
-    -   Many-to-One with `Order`
-    -   Many-to-One with `Product`
+3.  **Frontend Setup:**
+    ```bash
+    # Navigate to the frontend directory
+    cd frontend
 
-### `Wishlist`
+    # Install frontend dependencies
+    npm install
+    ```
 
--   **Primary Key:** `id`
--   **Foreign Key:** `user_id` -> `User.id` (unique)
--   **Relationships:**
-    -   One-to-One with `User`
-    -   Many-to-Many with `Product` (through `wishlist_items` table)
+### Running the Application
 
-### `wishlist_items` (Association Table)
+1.  **Run the Backend:**
+    From the root directory, run:
+    ```bash
+    python run.py
+    ```
+    The backend will be available at `http://127.0.0.1:8000`.
 
--   **Composite Primary Key:** `wishlist_id`, `product_id`
--   **Foreign Keys:**
-    -   `wishlist_id` -> `Wishlist.id`
-    -   `product_id` -> `Product.id`
+2.  **Run the Frontend:**
+    In a separate terminal, navigate to the `frontend` directory and run:
+    ```bash
+    npm run dev
+    ```
+    The frontend will be available at `http://localhost:5173`.
 
----
+## Project Structure
+
+```
+.
+├── alembic/              # Alembic migration scripts
+├── app/                  # Main application directory
+│   ├── core/             # Core components (config, security)
+│   ├── db/               # Database setup
+│   ├── models/           # SQLAlchemy models
+│   ├── routers/          # API routers
+│   ├── schemas/          # Pydantic schemas
+│   ├── services/         # Business logic
+│   └── utils/            # Utility functions
+├── frontend/             # React frontend application
+│   ├── public/           # Public assets
+│   └── src/              # Frontend source code
+├── uploads/              # Directory for uploaded files
+├── main.py               # Main FastAPI application entrypoint
+├── run.py                # Script to run the development server
+├── requirements.txt      # Backend dependencies
+└── README.md             # This file
+```
 
 ## API Endpoints
 
-Here is a summary of the available API endpoints:
+A summary of the main API endpoints can be found below. For a complete and interactive API documentation, please visit the [Swagger UI](https://streetowear-ecom-website.onrender.com/docs).
 
-### Account (`/me`)
+*   `/auth`: User authentication (login, refresh token)
+*   `/users`: User management (signup, get user profile)
+*   `/products`: Product management and browsing
+*   `/categories`: Category management
+*   `/carts`: Shopping cart operations
+*   `/orders`: Order management
+*   `/reviews`: Product reviews and ratings
+*   `/wishlist`: Wishlist management
 
--   `GET /`: Get current user's info.
--   `PUT /`: Update current user's info.
--   `DELETE /`: Delete current user's account.
+## License
 
-### Auth (`/auth`)
-
--   `POST /signup`: User registration.
--   `POST /login/user`: User login.
--   `POST /login/admin`: Admin login.
--   `POST /refresh`: Refresh access token.
-
-### Carts (`/carts`)
-
--   `GET /`: Get all carts (admin).
--   `GET /{cart_id}`: Get a specific cart.
--   `POST /`: Create a new cart.
--   `PUT /{cart_id}`: Update a cart.
--   `DELETE /{cart_id}`: Delete a cart.
-
-### Categories (`/categories`)
-
--   `GET /`: Get all categories.
--   `GET /{category_id}`: Get a specific category.
--   `POST /`: Create a new category (admin).
--   `PUT /{category_id}`: Update a category (admin).
--   `DELETE /{category_id}`: Delete a category (admin).
-
-### Orders (`/orders`)
-
--   `POST /`: Create a new order.
--   `GET /`: Get orders for the current user.
--   `GET /all`: Get all orders (admin).
--   `PUT /{order_id}/status`: Update order status (admin).
--   `DELETE /{order_id}`: Delete an order.
-
-### Products (`/products`)
-
--   `GET /`: Get all products.
--   `GET /{product_id}`: Get a specific product.
--   `POST /`: Create a new product (admin).
--   `PUT /{product_id}`: Update a product (admin).
--   `DELETE /{product_id}`: Delete a product (admin).
--   `DELETE /{product_id}/images/{image_id}`: Delete a product image (admin).
-
-### Users (`/users`)
-
--   `GET /`: Get all users (admin).
--   `GET /{user_id}`: Get a specific user (admin).
--   `GET /me`: Get current user's profile.
--   `GET /admin/me`: Get current admin's profile.
--   `PUT /me`: Update current user's profile.
--   `PUT /{user_id}`: Update a user (admin).
--   `DELETE /{user_id}`: Delete a user (admin).
-
-### Wishlist (`/wishlist`)
-
--   `GET /`: Get user's wishlist.
--   `POST /`: Add a product to the wishlist.
--   `DELETE /{product_id}`: Remove a product from the wishlist.
-
----
-
-## JWT Authentication
-
-The application uses JSON Web Tokens (JWT) for authentication and authorization.
-
-### How it Works
-
-1.  **Login:** The user sends their credentials to the `/auth/login/user` or `/auth/login/admin` endpoint.
-2.  **Token Generation:** Upon successful authentication, the server generates two tokens:
-    *   **Access Token:** A short-lived JWT containing the user's ID and an expiration claim (`exp`). This token is used to authorize access to protected routes.
-    *   **Refresh Token:** A long-lived JWT that is used to obtain a new access token when the current one expires.
-3.  **Authenticated Requests:** To access protected endpoints, the client must include the access token in the `Authorization` header of the HTTP request, using the `Bearer` scheme.
-4.  **Authorization:** The server validates the access token on each request to a protected route. For role-based access control (e.g., admin-only endpoints), the server checks the user's role in the database.
-5.  **Token Refresh:** When the access token expires, the client can request a new access token by sending the refresh token to the `/auth/refresh` endpoint. This allows the user to stay logged in without having to re-enter their credentials.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
