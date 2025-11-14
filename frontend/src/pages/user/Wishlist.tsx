@@ -73,7 +73,7 @@ export default function Wishlist() {
               <Link to={`/user/products/${product.id}`}>
                 <div className="aspect-square overflow-hidden">
                   <img
-                    src={product.thumbnail}
+                    src={`${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail.startsWith('/') ? product.thumbnail.substring(1) : product.thumbnail}`}
                     alt={product.title}
                     className="h-full w-full object-cover transition-transform hover:scale-105"
                   />
