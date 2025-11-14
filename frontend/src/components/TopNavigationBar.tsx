@@ -50,12 +50,14 @@ export function TopNavigationBar({ userName, isAdmin }: TopNavigationBarProps) {
     { icon: LayoutDashboard, label: 'Dashboard', href: '/user/dashboard' },
   ];
 
+  const logoPath = 'Streeto_Wear!.png';
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-maroon text-white">
       <div className="container flex h-16 items-center justify-between">
         {/* Left Section - Branding */}
-        <Link to={isAdmin ? "/admin/dashboard" : "/user/dashboard"} className="text-2xl font-bold text-foreground flex items-center">
-          <img src={`${import.meta.env.VITE_API_BASE_URL}/Streeto_Wear!.png`} alt="Streeto Wear" className="h-16" />
+        <Link to={isAdmin ? "/admin/dashboard" : "/user/dashboard"} className="text-2xl font-bold text-white flex items-center">
+          <img src={`${import.meta.env.VITE_API_BASE_URL}/${logoPath.startsWith('/') ? logoPath.substring(1) : logoPath}`} alt="Streeto Wear" className="h-16" />
         </Link>
 
         {/* Center Section - Main Navigation Links */}
@@ -242,7 +244,7 @@ export function TopNavigationBar({ userName, isAdmin }: TopNavigationBarProps) {
             </DropdownMenu>
           )}
 
-          <Link to={isAdmin ? "/admin/orders" : "/user/cart"}> {/* Cart icon links to cart for user, orders for admin */}
+          <Link to={isAdmin ? "/admin/orders" : "/user/cart"}> {}
             <Button variant="ghost" size="icon" className="hover-gradient-background-yellow hover-gradient-text-yellow text-white">
               <ShoppingCart className="h-5 w-5" />
             </Button>
