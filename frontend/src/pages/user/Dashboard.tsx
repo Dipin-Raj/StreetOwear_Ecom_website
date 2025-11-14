@@ -9,6 +9,11 @@ import { Badge } from '@/components/ui/badge';
 import useEmblaCarousel from 'embla-carousel-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import videoSrc from '../../data/SoW (2).mp4';
+import image1Src from '../../data/18363c7262069b43e75267fdc942ccab.jpg';
+import image2Src from '../../data/GettyImages-1423350509.webp';
+import image3Src from '../../data/Paris Mens SS22 day 3.jpg';
+import image4Src from '../../data/FBE_Bysouth_HGW_A4_1.jpg';
 
 const AnimatedCategoryCard = ({ category }: { category: Category }) => {
   const { ref, inView } = useInView({
@@ -27,7 +32,7 @@ const AnimatedCategoryCard = ({ category }: { category: Category }) => {
         <Card className="hover-lift hover-gradient-maroon overflow-hidden cursor-pointer relative bg-white">
           <div className="aspect-square overflow-hidden">
             <img
-              src={`${import.meta.env.VITE_API_BASE_URL}/${category.thumbnail.startsWith('/') ? category.thumbnail.substring(1) : category.thumbnail}`}
+              src={category.thumbnail}
               alt={category.name}
               className="h-full w-full object-cover transition-transform hover:scale-105"
             />
@@ -61,7 +66,7 @@ const AnimatedProductCard = ({ product, handleAddToCart, handleAddToWishlist, is
         <Card className="hover-lift hover-gradient-primary">
           <div className="aspect-square overflow-hidden relative">
             <img
-              src={`${import.meta.env.VITE_API_BASE_URL}/${product.thumbnail.startsWith('/') ? product.thumbnail.substring(1) : product.thumbnail}`}
+              src={product.thumbnail}
               alt={product.title}
               className="w-full aspect-square object-cover rounded-lg mb-4"
             />
@@ -106,7 +111,7 @@ const AnimatedProductCard = ({ product, handleAddToCart, handleAddToWishlist, is
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories].
   const [products, setProducts] = useState<Product[]>([]);
   const [newDrops, setNewDrops] = useState<Product[]>([]);
   const [wishlist, setWishlist] = useState<Product[]>([]);
@@ -277,11 +282,11 @@ export default function Dashboard() {
   }
 
   const bannerItems = [
-    { type: 'video', src: '/src/data/SoW (2).mp4', position: 'center' },
-    { type: 'image', src: '/src/data/18363c7262069b43e75267fdc942ccab.jpg', position: 'center' },
-    { type: 'image', src: '/src/data/GettyImages-1423350509.webp', position: 'center' },
-    { type: 'image', src: '/src/data/Paris Mens SS22 day 3.jpg', position: 'center' },
-    { type: 'image', src: '/src/data/FBE_Bysouth_HGW_A4_1.jpg', position: 'center' },
+    { type: 'video', src: videoSrc, position: 'center' },
+    { type: 'image', src: image1Src, position: 'center' },
+    { type: 'image', src: image2Src, position: 'center' },
+    { type: 'image', src: image3Src, position: 'center' },
+    { type: 'image', src: image4Src, position: 'center' },
   ];
 
   return (
