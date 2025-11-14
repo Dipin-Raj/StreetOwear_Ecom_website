@@ -6,19 +6,18 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from '@/hooks/use-toast';
-import { loginUser } from '@/lib/api'; // Import the new API utility
-import { ShoppingBag } from 'lucide-react';
+import { loginUser } from '@/lib/api';
 
 export default function Login() {
-  const [username, setUsername] = useState(''); // Changed from email to username
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'admin' | 'user'>('user');
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => { // Made async
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const result = await loginUser(username, password, role); // Use loginUser from API utility
+    const result = await loginUser(username, password, role);
     console.log("Login result:", result);
     
     if (result.success && result.data) {
@@ -28,7 +27,7 @@ export default function Login() {
 
       toast({
         title: "Login successful",
-        description: `Welcome back!`, // Customize if user info is available
+        description: `Welcome back!`,
       });
       
       console.log("Navigating to:", role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
@@ -51,7 +50,7 @@ export default function Login() {
       <Card className="w-full max-w-md shadow-elegant">
         <CardHeader className="space-y-3 text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary">
-            <ShoppingBag className="h-6 w-6 text-primary-foreground" />
+            <img src={`${import.meta.env.VITE_API_BASE_URL}/Streeto_Wear!.png`} alt="Streeto Wear Logo" className="h-full w-full object-contain" />
           </div>
           <CardTitle className="text-3xl">Welcome Back</CardTitle>
           <CardDescription>Sign in to your account to continue</CardDescription>
@@ -59,11 +58,11 @@ export default function Login() {
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label> {/* Changed from email to username */}
+              <Label htmlFor="username">Username</Label> {}
               <Input
                 id="username"
-                type="text" // Changed type to text
-                placeholder="yourusername" // Updated placeholder
+                type="text"
+                placeholder="yourusername"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
@@ -108,9 +107,9 @@ export default function Login() {
 
             <div className="rounded-lg bg-muted p-3 text-xs text-muted-foreground">
               <p className="font-medium mb-1">Demo Credentials:</p>
-              <p>Admin: Dipin Raj</p> {/* Updated demo credentials */}
-              <p>User: Appu</p> {/* Updated demo credentials */}
-              <p>Password: 1234</p> {/* Updated demo credentials */}
+              <p>Admin: Dipin Raj</p> {}
+              <p>User: Appu</p> {}
+              <p>Password: 1234</p> {}
             </div>
           </form>
         </CardContent>
