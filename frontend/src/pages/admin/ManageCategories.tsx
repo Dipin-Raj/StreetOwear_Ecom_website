@@ -91,7 +91,7 @@ export default function ManageCategories() {
           <Card key={category.id} className="hover-lift gradient-card overflow-hidden card-container">
             <div className="aspect-video overflow-hidden">
               <img
-                src={category.thumbnail}
+                src={`${import.meta.env.VITE_API_BASE_URL}/${category.thumbnail.startsWith('/') ? category.thumbnail.substring(1) : category.thumbnail}`}
                 alt={category.name}
                 className="h-full w-full object-cover transition-transform hover:scale-105"
               />
