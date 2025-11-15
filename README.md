@@ -66,6 +66,13 @@ Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts
 
 <br>
 
+## 📊 ER Diagram
+
+<p align="center">
+  <img src="Documents/ER_Diagram/ER_01.svg" alt="ER_Diagram" width="800"/>
+</p>
+<br>
+
 ## 🗃️ Database Schema
 
 The database schema is designed to support a comprehensive e-commerce platform. Here's an overview of the main tables and their relationships:
