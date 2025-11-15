@@ -24,8 +24,8 @@ Welcome to StreetO'Wear, a modern e-commerce platform for streetwear enthusiasts
 
 ## 🌐 Live Demo & API Docs
 
-*   **Deployed Application:** [https://street-owear-ecom-website.vercel.app/](https://street-owear-ecom-website.vercel.app/)
-*   **Swagger UI API Docs:** [https://streetowear-ecom-website.onrender.com/docs](https://streetowear-ecom-website.onrender.com/docs)
+*   **Deployed Application:** [Vercel App](https://street-owear-ecom-website.vercel.app/)
+*   **Swagger UI API Docs:** [Render Docs](https://streetowear-ecom-website.onrender.com/docs)
     *   **Note:** The backend is hosted on Render's free tier, so it may take a moment for the server to warm up and load. Please be patient!
 
 <br>
@@ -196,6 +196,9 @@ The database schema is designed to support a comprehensive e-commerce platform. 
 │   ├── schemas/          # Pydantic schemas
 │   ├── services/         # Business logic
 │   └── utils/            # Utility functions
+├── Documents/            # React frontend application
+│   ├── Reports/          # Detailed Project report
+│   └── ER_Diagram/       #  Entity-Relationship Diagram
 ├── frontend/             # React frontend application
 │   ├── public/           # Public assets
 │   └── src/              # Frontend source code
